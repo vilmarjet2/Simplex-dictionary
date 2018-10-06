@@ -36,6 +36,9 @@ public class PlotGraph extends JPanel {
       this.add(dPanel);
       
       
+      TEM QUE TER UM ERRO AQUI ; 
+      
+      
       /*Useless change*/
       //this.setVisible(true);
   }
