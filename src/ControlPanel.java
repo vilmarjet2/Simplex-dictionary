@@ -16,7 +16,8 @@ public class ControlPanel {
     public int cont;
     public JPanel controlPanel;
     
-    public ControlPanel (int n){
+    public ControlPanel (int n)
+    {
         controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout());
         cont = n;

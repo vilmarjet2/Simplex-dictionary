@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  *
  * @author Jefte
  */
-public class frameDictionaire {
+public class frameDictionaire extends JFrame {
     
     private JFrame BeforeDic;
     private JFrame myFrame; //Principal Frame 
@@ -180,7 +180,8 @@ public class frameDictionaire {
         warningFrame.setVisible(true);
     }
     
-    public void setVisiblee (boolean bo){
+    @Override
+    public void setVisible (boolean bo){
           BeforeDic.setVisible(bo);
     } 
     
