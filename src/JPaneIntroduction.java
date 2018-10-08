@@ -29,7 +29,8 @@ public class JPaneIntroduction
 		statusLabel.setSize(100, 100);
 
 //    Frame of Conf. of problem 
-		JFrame frameDic = new frameDictionaire(5, 5); // Most important Frame
+//		JFrame frameDic = new frameDictionaire(5, 5); // Most important Frame
+		JFrame frameDic = new MainFrame();
 
 //      Set ControlPane to add Button
 		JPanel PanelButton = new FirstPanel(400, 400);

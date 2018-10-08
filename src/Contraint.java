@@ -56,8 +56,12 @@ public class Contraint {
     public ArrayList< ArrayList<Variable>>    startvecCont;
     public ArrayList<Variable>             startfuncObj;
     
-    public Contraint (int m, int n){
+    public Contraint (int m, int n)
+    {
+    	LeftPanel = new JPanel();
+    	if (m >0 && n >0)
         initialization(m, n);
+        
     }
     
     public Contraint (){
@@ -71,7 +75,7 @@ public class Contraint {
     private void initialization(final int m,final int n){    
         //Declarations
         
-        LeftPanel = new JPanel (new GridLayout(m+3, 0));
+        LeftPanel.setLayout(new GridLayout(m+3, 0));
         if (n == 2)
             graphPanel = new PlotGraph();
         
@@ -150,46 +154,45 @@ public class Contraint {
     public void initialize_LastButt(){
         lastButt = new JButton("Start");
         lastButt.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        
-                        String nameActButt = e.getActionCommand(); //aB = ActiveButton
-                        
-                        if (nameActButt.equals("Start")){
-                            int verif = 0; 
-                            verif = gettingFuncObj();
-                            if (verif == 1 )
-                                verif = getConstrants();
+            public void actionPerformed(ActionEvent e) {
                 
-                            if (verif == 1){
-                                
-                                lastButt.setLabel("Edit/Restart");
-                                //System.out.println(vecCont.get(0).get(1).textVal.getText());
-                                setValuesFraction(false);
-                                addingInPanels(vecPanel, matButt, vecCont,funcObj,rows, columns);
-                                setEditableText(false);
-                                setEditableButtons(true);
-                                setEnableRadioButtonFrac(true);
-                                copyToStartVariables();
-                                if (columns-1 == 2)//nb
-                                    setGraph(vecPanel, matButt, vecCont,funcObj,rows, columns);
-                            }else{
-                                addingWarrningFrame("All numbers must be Integer or Double (ex: 1.5)!");
-                            }
-                        }else{
-                            lastButt.setLabel("Start"); 
-                            setEditableText(true);
-                            setEditableButtons(false);
-                            setValuesFraction(false);
-                            restartProblem();
-                            addingInPanels(vecPanel, matButt, vecCont,funcObj,rows, columns);
-                            setEnableRadioButtonFrac(false);
-                            
-                        }   
-                    } //end actionPerformed smallButt
-                   });
+                String nameActButt = e.getActionCommand(); //aB = ActiveButton
+                
+                if (nameActButt.equals("Start")){
+                    int verif = 0; 
+                    verif = gettingFuncObj();
+                    if (verif == 1 )
+                        verif = getConstrants();
+        
+                    if (verif == 1){
+                        
+                        lastButt.setLabel("Edit/Restart");
+                        //System.out.println(vecCont.get(0).get(1).textVal.getText());
+                        setValuesFraction(false);
+                        addingInPanels(vecPanel, matButt, vecCont,funcObj,rows, columns);
+                        setEditableText(false);
+                        setEditableButtons(true);
+                        setEnableRadioButtonFrac(true);
+                        copyToStartVariables();
+                        if (columns-1 == 2)//nb
+                            setGraph(vecPanel, matButt, vecCont,funcObj,rows, columns);
+                    }else{
+                        addingWarrningFrame("All numbers must be Integer or Double (ex: 1.5)!");
+                    }
+                }else{
+                    lastButt.setLabel("Start"); 
+                    setEditableText(true);
+                    setEditableButtons(false);
+                    setValuesFraction(false);
+                    restartProblem();
+                    addingInPanels(vecPanel, matButt, vecCont,funcObj,rows, columns);
+                    setEnableRadioButtonFrac(false);
+                    
+                }   
+            } //end actionPerformed smallButt
+           });
         
     }
-    
     
     public void initialize_RandomButton (){
         
@@ -243,10 +246,10 @@ public class Contraint {
                 matButt.get(ii).get(jj).setEnabled(bln); 
     }
     
-    public void setValueDualPrimal(){
-        float zP, wD;
-        
-    }
+//    public void setValueDualPrimal(){
+//        float zP, wD;
+//        
+//    }
     
      public void addingWarrningFrame(String str){
         warningFrame.dispose();
