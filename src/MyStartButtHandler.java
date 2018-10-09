@@ -54,6 +54,17 @@ public class MyStartButtHandler implements ActionListener
 	}//end function
 	
 	
+	public void copyToStartVariables()
+    {
+        for (int ii=0; ii<myPanel.rows; ii++)
+            for (int jj=0; jj<myPanel.columns; jj++)
+            	myPanel.startvecCont.get(ii).get(jj).copyFromVariable(myPanel.vecCont.get(ii).get(jj)); 
+        
+        for(int jj=0; jj<myPanel.columns;jj++)
+        	myPanel.startfuncObj.get(jj).copyFromVariable(myPanel.funcObj.get(jj));
+    }//emd copytoStart
+	
+	
 	public int gettingFuncObj()
 	{
         double auxD; 

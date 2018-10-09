@@ -63,7 +63,7 @@ public class Vocabulary {
 				   v.add("Cliquez en ("+ getVoc_menu(0) +"-->"+getVoc_menu(1) + ") pour créer un nouveau programme.");  
 				   v.add("Clique em ("+ getVoc_menu(0) +"-->"+getVoc_menu(1) + ") para criar un novo programa."); 
 				   vecVocTex.add(v);
-		/*4*/v = new Vector<String>(); v.add("Canonical Formulation."); v.add("Formulation Canonique."); v.add("Formulation Canonica."); vecVocTex.add(v);
+		/*4*/v = new Vector<String>(); v.add("Canonical Formulation"); v.add("Formulation Canonique"); v.add("Formulation Canonica"); vecVocTex.add(v);
 		
 	}
 	

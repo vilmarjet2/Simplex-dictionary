@@ -1,4 +1,7 @@
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -13,7 +16,7 @@ public class MainFrame extends JFrame  {
 	
 	int nbVar = 0;//Must start with 0 
 	int nbConst = 0; //Must start with 0
-	int lg = 1;
+	int lg = 0;
 //	private static final long serialVersionUID = 1L;
 	public static Vocabulary vocabulary;
 	JPanel mainPanel;
@@ -40,7 +43,7 @@ public class MainFrame extends JFrame  {
 	
 	void Initializations()
 	{
-		vocabulary = new Vocabulary(1);
+		vocabulary = new Vocabulary(lg);
 		menuhandler = new MyMenuHandler(this);
 		mainPanel = new My_MainPanel();
 		menuBar = new My_JMenuBar(menuhandler);
@@ -70,5 +73,17 @@ public class MainFrame extends JFrame  {
 	}
 	
 	
+	
+	public static void changeFont ( Component component, Font font )
+	{
+	    component.setFont ( font );
+	    if ( component instanceof Container )
+	    {
+	        for ( Component child : ( ( Container ) component ).getComponents () )
+	        {
+	            changeFont ( child, font );
+	        }
+	    }
+	}
 	
 }

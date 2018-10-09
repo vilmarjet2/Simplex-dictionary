@@ -46,6 +46,8 @@ public class My_MainPanel extends JPanel {
         
         //Declaration (Build problem)
         mainframe.mainCont = new Contraint(m,n);
+        mainframe.problem = new ProblemModel(m,n);
+        
         
         //adding Panels from Problem 
         addPanel_Problem();
@@ -74,7 +76,9 @@ public class My_MainPanel extends JPanel {
 	
 	private void addPanel_Problem( )
 	{ 
-		add(mainframe.mainCont.LeftPanel);
+//		add(mainframe.mainCont.LeftPanel);
+		add(mainframe.problem);
+		
 		
         if (nbVar==2) 
         {

@@ -1,7 +1,11 @@
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -47,6 +51,7 @@ public class ProblemModel extends JPanel {
     JButton          random;
     
     JLabel msg2;
+    JLabel msg3;
 	
 	public ProblemModel()
 	{
@@ -55,15 +60,17 @@ public class ProblemModel extends JPanel {
 	
 	public ProblemModel(int m, int n)
 	{
-		initialization(m,n);
-		
 		parametersPanel(m);
+		
+		initialization(m,n);
 		
 	}
 	
+	
 	private void parametersPanel(int m)
 	{
-		setLayout(new GridLayout(rows + 3, 0));//for each row we have a different Panel
+		setLayout(new GridLayout(rows + 4, 0));//for each row we have a different Panel
+//		MainFrame.changeFont(this,new java.awt.Font("Century Schoolbook L", 2, 14) );
 	}
 	
 	private void initialization(int m, int n)
@@ -123,11 +130,45 @@ public class ProblemModel extends JPanel {
 		setEditableText(true);
 		setEditableButtons(false);
 		setValuesFraction(false);
-		addingInPanels(vecPanel, matButt, vecCont, funcObj, rows, columns);
+		addingInPanels_CanonicalProblem(vecPanel, matButt, vecCont, funcObj, rows, columns);
     }//end initialization
 	
 	
-	public void initialize_FuncObject(){
+	public void initialize_RandomButton ()
+	{
+        
+        random = new JButton("Creat Random");
+        random.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {  
+                        set_RandonVariable();
+                        addingInPanels(vecPanel, matButt, vecCont, funcObj,rows, columns);
+                    } //end actionPerformed smallButt
+                   });
+    }
+	
+	public void set_RandonVariable()
+    {
+        for (int ii=0; ii<rows; ii++)
+            for (int jj=0; jj<columns; jj++){
+                Random gerador = new Random();//int numero = gerador.nextInt(10) + 10;
+                if (jj != 0){
+                    vecCont.get(ii).get(jj).setValue(-1*(gerador.nextInt(9)+1));
+                }else
+                    vecCont.get(ii).get(jj).setValue(gerador.nextInt(6)+1);
+            }
+        
+        //Function objectf 
+       for (int jj=0; jj<columns; jj++){
+            Random gerador = new Random();//int numero = gerador.nextInt(10) + 10;
+            if (jj != 0){
+                funcObj.get(jj).setValue(-1*(gerador.nextInt(9)+1));
+            }else
+                funcObj.get(jj).setValue((gerador.nextInt(5)+1));
+        }
+    }
+	
+	public void initialize_FuncObject()
+	{
         Variable var, auxvar;
         for(int j=0; j<columns;j++){
             var = new Variable (-1,"x"+j);
@@ -357,22 +398,24 @@ public class ProblemModel extends JPanel {
        * 
        * */
 		removeAll();
-		
-		msg2 = new JLabel("");
-		msg2 = setText("<html><center>" + MainFrame.vocabulary.getText_index(4) + "<br>" +type +" z = " + "</center></html>");
+		msg3= new JLabel();
+		msg3.setText("<html><center>" + MainFrame.vocabulary.getText_index(4) + ": </center></html>");
+//		msg3.setFont(new Font("Serif", Font.PLAIN, 20));
       int cont = 0;
       vecPanel.get(cont).removeAll();
-      vecPanel.get(cont).add(msg2);
+      vecPanel.get(cont).add(msg3);
+      vecPanel.get(cont).add( new JLabel(type +" z = " ));
+
       for (int jj=0; jj<n; jj++){
           JLabel msg = new JLabel(funcObj.get(jj).name);
           if (jj != 0){
                 vecPanel.get(cont).add(funcObj.get(jj).textVal);
                 vecPanel.get(cont).add(msg);
                 if (jj != n-1)
-                 vecPanel.get(cont).add(new JLabel (" + "));
+                 vecPanel.get(cont).add(new JLabel(" + "));
             }else{
                 vecPanel.get(cont).add(funcObj.get(jj).textVal);
-                vecPanel.get(cont).add(new JLabel (" + "));
+                vecPanel.get(cont).add(new JLabel(" + "));
             }
       }
       add(vecPanel.get(cont));
@@ -385,19 +428,22 @@ public class ProblemModel extends JPanel {
       for (int ii=0; ii<m; ii++){
           cont++;
           vecPanel.get(cont).removeAll();
-          for (int jj=0; jj<n; jj++){
-             if (jj != 0){
+          for (int jj=1; jj<n; jj++)
+          {
                  vecPanel.get(cont).add(vecCont.get(ii).get(jj).textVal);
                  vecPanel.get(cont).add(matButt.get(ii).get(jj));
                  if (jj != n-1)
-                  vecPanel.get(cont).add(new JLabel (" + "));
-             }else{
-                 vecPanel.get(cont).add(matButt.get(ii).get(jj));
-                 vecPanel.get(cont).add(new JLabel (" = "));
-                 vecPanel.get(cont).add(vecCont.get(ii).get(jj).textVal);
-                 vecPanel.get(cont).add(new JLabel (" + "));
-             }
+                  vecPanel.get(cont).add(new JLabel(" + "));
           }//end for jj
+          
+          {//for slack variable 
+        	  int jj = 0;
+//              vecPanel.get(cont).add(matButt.get(ii).get(jj));
+              vecPanel.get(cont).add(new JLabel (" <= "));
+              vecPanel.get(cont).add(vecCont.get(ii).get(jj).textVal); //seems ok 
+              vecPanel.get(cont).add(new JLabel ("  (s"+cont +")"));
+          }
+          
           add(vecPanel.get(cont));
       }// end for ii
       
