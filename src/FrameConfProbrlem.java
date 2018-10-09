@@ -1,4 +1,6 @@
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.sun.javafx.scene.paint.GradientUtils.Point;
 
 public class FrameConfProbrlem extends JFrame {
 	
@@ -28,7 +32,7 @@ public class FrameConfProbrlem extends JFrame {
 	{
 
         //myFrame.dispose();
-        setName("Problem options");
+        setTitle("Problem options");
         setSize(400,200);
         setLayout(new GridLayout(3, 1));
         addWindowListener(new WindowAdapter() {
@@ -37,9 +41,22 @@ public class FrameConfProbrlem extends JFrame {
          }        
       });
        
+        //position (center of screen)
+        centerFrame();
        setVisible(true);
        
     }
+	
+	private void centerFrame() {
+
+        Dimension windowSize = getSize();
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        java.awt.Point centerPoint = ge.getCenterPoint();
+
+        int dx = centerPoint.x - windowSize.width / 2;
+        int dy = centerPoint.y - windowSize.height / 2;    
+        setLocation(dx, dy);
+	}
 	
 	public void addingPanelsBF() 
 	{
@@ -86,7 +103,7 @@ public class FrameConfProbrlem extends JFrame {
 				} else {
 					// Do myframe
 					dispose();
-					frame.settingDicFrame(nbConst, nbVar);   
+					frame.setPanelProblem(nbConst, nbVar);   
 				}
 			} // end actionPerformed smallButt
 		});

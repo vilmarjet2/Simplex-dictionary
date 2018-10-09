@@ -13,6 +13,7 @@ public class JPaneIntroduction
 	private JFrame mainFrame ;
 	private JLabel headerLabel;
 	private JLabel statusLabel;
+//	public Vocabulary vocabulary;
 	int sizeVec = 3;
 
 	public JPaneIntroduction() 
@@ -30,6 +31,7 @@ public class JPaneIntroduction
 
 //    Frame of Conf. of problem 
 //		JFrame frameDic = new frameDictionaire(5, 5); // Most important Frame
+//		vocabulary = new Vocabulary(1);
 		JFrame frameDic = new MainFrame();
 
 //      Set ControlPane to add Button

@@ -29,7 +29,7 @@ public class FirstPanel extends JPanel {
 	public void creatButton_ok(JFrame myframe,JLabel msg) 
 	{
 
-		JButton okButton = new JButton("Opem Conf. Frame");
+		JButton okButton = new JButton("Open Frame");
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				myframe.setVisible(true);
