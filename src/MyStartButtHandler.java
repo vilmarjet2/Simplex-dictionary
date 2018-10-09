@@ -47,8 +47,8 @@ public class MyStartButtHandler implements ActionListener
         	 myPanel.setEditableButtons(false);
         	 myPanel.setValuesFraction(false);
         	 myPanel.restartProblem();
-             myPanel.addingInPanels(myPanel.vecPanel, myPanel.matButt, myPanel.vecCont,myPanel.funcObj,myPanel.rows, myPanel.columns);
-             setEnableRadioButtonFrac(false);
+             myPanel.addingInPanels_CanonicalProblem(myPanel.vecPanel, myPanel.matButt, myPanel.vecCont,myPanel.funcObj,myPanel.rows, myPanel.columns);
+             myPanel.setEnableRadioButtonFrac(false);
              
          } 
 	}//end function

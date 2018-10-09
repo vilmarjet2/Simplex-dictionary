@@ -45,6 +45,8 @@ public class ProblemModel extends JPanel {
     
     JButton          lastButt;
     JButton          random;
+    
+    JLabel msg2;
 	
 	public ProblemModel()
 	{
@@ -356,7 +358,7 @@ public class ProblemModel extends JPanel {
        * */
 		removeAll();
 		
-		JLabel msg2 = new JLabel("");
+		msg2 = new JLabel("");
 		msg2 = setText("<html><center>" + MainFrame.vocabulary.getText_index(4) + "<br>" +type +" z = " + "</center></html>");
       int cont = 0;
       vecPanel.get(cont).removeAll();
